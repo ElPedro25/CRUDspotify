@@ -55,8 +55,8 @@ function preencherTabela(lista) {
             <td>${objeto.estado || ''}</td>
             <td>${objeto.telefone || ''}</td>
             <td>
-                <button type="button" class="btn-editar" onclick="carregarEdicao(${objeto.id})">Editar</button>
-                <button type="button" class="btn-perigo" onclick="deletarDados(${objeto.id})">Apagar</button>
+                <button type="button" class="btn-editar" onclick="carregarEdicao('${objeto.id}')">Editar</button>
+                <button type="button" class="btn-perigo" onclick="deletarDados('${objeto.id}')">Apagar</button>
             </td>
         `;
         tabelaCorpo.appendChild(tr);
@@ -65,7 +65,7 @@ function preencherTabela(lista) {
 
 // Prepara formulário de edição (PUT)
 function carregarEdicao(id) {
-    fetch(`/pessoas)${id}`)
+    fetch(`/pessoas/${id}`)
         .then(resposta => resposta.json())
         .then(pessoa => {
             document.getElementById('areaEdicao').style.display = 'block';
@@ -105,7 +105,7 @@ function atualizarDados() {
         telefone: document.getElementById('telefoneAtualizar').value
     };
 
-    fetch(`/pessoas${id}`, {
+    fetch(`/pessoas/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
